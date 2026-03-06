@@ -3,61 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domke | Ingeniería Superior</title>
+    <title>DOMKE TITANIUM | Ingeniería en Glúteos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; background: #050505; color: white; line-height: 1.6; }
-        header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero-domke.jpg'); background-size: cover; text-align: center; }
-        h1 { font-size: 4rem; margin-bottom: 0; letter-spacing: -2px; }
-        .subtitle { font-size: 1.5rem; color: #ffd700; font-weight: 300; }
+        :root {
+            --gold: #f5c71a;
+            --gold-dim: #c9a514;
+            --bg-dark: #0a0a0a;
+            --bg-card: #161616;
+            --text-main: #e0e0e0;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            line-height: 1.8; 
+            overflow-x: hidden;
+        }
+
+        /* Animación de entrada básica */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0; /* Empieza invisible */
+        }
+
+        /* --- HEADER / HERO --- */
+        header { 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%), url('hero-domke.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            text-align: center; 
+            padding: 0 20px;
+        }
+
+        h1 { 
+            font-size: 5rem; 
+            font-weight: 900;
+            margin-bottom: 0; 
+            letter-spacing: -4px; 
+            background: linear-gradient(180deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .subtitle { 
+            font-size: 1.5rem; 
+            color: var(--gold); 
+            font-weight: 300; 
+            margin-top: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        section { 
+            padding: 120px 20px; 
+            max-width: 1100px; 
+            margin: auto; 
+        }
+
+        h2 {
+            font-size: 3rem;
+            text-align: center;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 60px;
+        }
+
+        .gold-text { color: var(--gold); font-weight: bold; }
+
+        /* --- COMPONENTES --- */
+        .cta-button { 
+            background: transparent;
+            color: var(--gold); 
+            padding: 15px 40px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            border: 2px solid var(--gold);
+            font-weight: bold; 
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-top: 40px; 
+            transition: var(--transition);
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        .cta-button:hover { 
+            background: var(--gold); 
+            color: black; 
+            box-shadow: 0 0 20px rgba(245, 199, 26, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* --- SECCIÓN ESPECIFICACIONES --- */
+        .specs { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 60px; 
+            align-items: center; 
+        }
+
+        .spec-box { 
+            border: 1px solid #222; 
+            padding: 40px; 
+            border-radius: 20px; 
+            background: var(--bg-card); 
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spec-box:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .spec-box::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(245, 199, 26, 0.1), transparent 60%);
+        }
         
-        section { padding: 100px 20px; max-width: 1000px; margin: auto; text-align: center; }
-        .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .spec-box { border: 1px solid #333; padding: 20px; border-radius: 10px; background: #111; }
-        
-        .gold-text { color: #ffd700; font-weight: bold; }
-        .cta-button { background: #ffd700; color: black; padding: 15px 30px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-block; margin-top: 20px; }
-        
-        footer { background: #111; padding: 50px 0; border-top: 1px solid #333; text-align: center; }
-        .links a { color: #888; margin: 0 15px; text-decoration: none; font-size: 0.9rem; }
-        .links a:hover { color: #ffd700; }
+        /* --- NUEVA GALERÍA DE FOTOS --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            filter: grayscale(100%);
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            filter: grayscale(0%);
+            border-color: var(--gold);
+            transform: scale(1.03);
+        }
+
+        /* --- FOOTER MODERNO --- */
+        footer { 
+            background: #000; 
+            padding: 80px 20px; 
+            border-top: 1px solid #111; 
+            text-align: center; 
+        }
+
+        .links-title {
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .links a { 
+            color: #888; 
+            text-decoration: none; 
+            font-size: 1rem; 
+            transition: var(--transition);
+            padding: 5px 10px;
+        }
+
+        .links a:hover { 
+            color: var(--gold); 
+            background: rgba(245, 199, 26, 0.1);
+            border-radius: 5px;
+        }
+
+        /* Responsividad básica */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; letter-spacing: -2px; }
+            .specs { grid-template-columns: 1fr; }
+            section { padding: 60px 20px; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>DOMKE EDITION</h1>
-        <p class="subtitle">Glúteos Dorados: El fin de la fragilidad biológica.</p>
-        <a href="#detalles" class="cta-button">Ver Especificaciones</a>
+        <h1>DOMKE.T1</h1>
+        <p class="subtitle">Reinforced Gluteal System</p>
+        <a href="#detalles" class="cta-button">Explorar Tecnología</a>
     </header>
 
-    <section id="detalles">
+    <section id="detalles" class="animate" style="animation-delay: 0.2s;">
         <h2>Ingeniería Metalúrgica</h2>
         <div class="specs">
-            <div>
-                <img src="gluteos-tech.jpg" alt="Esquema técnico" style="width:100%; border-radius:10px;">
+            <div class="spec-img-container">
+                <img src="gluteos-tech.jpg" alt="Esquema técnico aleación" style="width:100%; border-radius:20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
             </div>
             <div class="spec-box">
-                <h3>Aleación Reforzada</h3>
-                <p>Nuestra tecnología única utiliza una base de <span class="gold-text">Titanio de grado aeroespacial</span> fusionado con <span class="gold-text">Wolframio</span>, garantizando una resistencia incalculable ante cualquier impacto de Volleyfut.</p>
+                <h3 style="color:white; font-size:1.5rem;">Fusión Wolf-Ti</h3>
+                <p>Presentamos el culmen de la bio-ingeniería. El núcleo del <span class="gold-text">Domke.T1</span> está forjado con una aleación molecular de <strong>Titanio y Wolframio</strong>.</p>
+                <p>Esta estructura no solo proporciona un acabado estético <span class="gold-text">Dorado Premium</span>, sino que ofrece una resistencia balística certificada ante remates de Volleyfut de alta intensidad.</p>
             </div>
         </div>
     </section>
 
-    <section>
-        <h2>Historial y Rendimiento</h2>
-        <p>No solo es estética. Domke ha sido forjado en la disciplina del <strong>Volleyfut</strong> y la agilidad táctica. Su leyenda comenzó con la mítica "Operación Escoba", un antecedente que demuestra su capacidad para recolectar recursos bajo presión.</p>
-        <img src="volleyfut-action.jpg" alt="Domke en acción" style="width:100%; max-width:600px; margin-top:30px; border-radius:10px;">
+    <section class="animate" style="animation-delay: 0.4s; background: #0d0d0d; max-width: 100%; width: 100%; box-sizing: border-box;">
+        <div style="max-width: 1100px; margin: auto;">
+            <h2>Rendimiento Probado</h2>
+            <p style="text-align:center; max-width: 700px; margin: 0 auto 50px auto; color: #aaa;">El Domke.T1 ha sido sometido a las pruebas más exigentes del mundo real, demostrando una agilidad y resistencia sin precedentes.</p>
+            
+            <div class="gallery">
+                <div class="gallery-item" style="background-image: url('gallery-volley.jpg');" title="Prueba de impacto en Volleyfut"></div>
+                <div class="gallery-item" style="background-image: url('gallery-escobas.jpg');" title="Operación de recolección táctica"></div>
+                <div class="gallery-item" style="background-image: url('gallery-gold.jpg');" title="Acabado Dorado Wolframio"></div>
+                <div class="gallery-item" style="background-image: url('gallery-jakob.jpg');" title="El Ingeniero / El Sujeto"></div>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <p>DOMKE ECOSYSTEM</p>
+        <div class="links-title">Domke Unified Ecosystem</div>
         <div class="links">
-            <a href="https://ecochip.github.io/Domkegluteos.com/">Domke Glúteos Oficial</a>
-            <a href="#">Archivo Escobas (Próximamente)</a>
-            <a href="#">Entrenamiento Volleyfut (Próximamente)</a>
+            <a href="https://ecochip.github.io/Domkegluteos.com/" target="_blank">Domke Glúteos Oficial</a>
+            <a href="#">Broom Database v1.0</a>
+            <a href="#">Volleyfut League</a>
+            <a href="#">Wolframio Corp.</a>
         </div>
-        <p style="font-size: 0.7rem; color: #444; margin-top: 20px;">© 2026 Domke Corp. Todos los derechos dorados reservados.</p>
+        <p style="font-size: 0.8rem; color: #333; margin-top: 40px;">© 2026 Domke Laboratories. Unauthorized copying of this anatomy is strictly prohibited.</p>
     </footer>
+
+    <script>
+        const observers = new IntersectionObserver(((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.animationPlayState = 'running'; // No estándar pero ayuda a visualizar
+                    observers.unobserve(entry.target);
+                }
+            });
+        }), { threshold: 0.1 });
+
+        document.querySelectorAll('.animate').forEach(section => {
+            observers.observe(section);
+        });
+    </script>
 
 </body>
 </html>
